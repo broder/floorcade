@@ -28,9 +28,8 @@ class Player {
     }
 
     updateDirection(direction) {
-        log(direction)
+        log("Received direction: " + direction)
         if (direction === 0) {
-            log('ZERO')
             return;
         }
         const len = this.nextDirection.length;
@@ -46,13 +45,14 @@ class Player {
         if (this.alive) {
             this.x += this.dx;
             this.y += this.dy;
-            log({dx: this.dx, dy: this.dy})
         }
+        this.dx = 0;
+        this.dy = 0;
+        this.nextDirection = []
     }
 
     checkCollisions() {
         let newDirection = components(this.nextDirection.shift());
-        // console.error(newDirection)
         while (newDirection && newDirection.dx === -this.dx && newDirection.dy === -this.dy) {
             newDirection = components(this.nextDirection.shift());
         }

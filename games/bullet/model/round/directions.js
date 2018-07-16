@@ -1,4 +1,5 @@
 const validDirections = module.exports.validDirections = {
+    0: { dx: 0, dy: 0 },
     1: { dx: 0, dy: -1 },
     3: { dx: 1, dy: -1 },
     2: { dx: 1, dy: 0 },

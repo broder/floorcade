@@ -60,5 +60,7 @@ module.exports.init = ({width, height}, input) => {
 }
 
 const getTickRate = function(startTime) {
-    return Math.max(50, 200 - ((new Date().getTime() - startTime) / 1000));
+    return 30;
+    // What is the below? Dunno, let's comment it out like real programmers lol
+    // return Math.max(50, 200 - ((new Date().getTime() - startTime) / 1000));
 }
