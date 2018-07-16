@@ -21,6 +21,7 @@ module.exports.init = ({width, height}, input) => {
     const tick = () => {
         const collisions = [];
         const deadPlayers = state.players.filter(p => !p.alive).map(p => p.id);
+
         if (deadPlayers.length === 4) {
             subscription.unsubscribe();
             resolveComplete();

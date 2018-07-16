@@ -1,14 +1,15 @@
 const { components } = require('./directions');
+const log = require ('../../log');
 
 module.exports.init = ({width, height}) => {
     const offset = Math.round(Math.min(width / 4, height / 4));
     var startingPositions = [{x: 20, y: 20}];
     return startingPositions.map(({x, y}, index) => new Player({
         id: index + 1,
-        x: Math.round(x * offset + width / 2),
-        y: Math.round(y * offset + height / 2),
-        dx: -x,
-        dy: -y
+        x: x,
+        y: y,
+        dx: 0,
+        dy: 0
     }));
 };
 
@@ -28,7 +29,9 @@ class Player {
     }
 
     updateDirection(direction) {
+        log(direction)
         if (direction === 0) {
+            log('ZERO')
             return;
         }
         const len = this.nextDirection.length;
@@ -44,10 +47,20 @@ class Player {
         if (this.alive) {
             this.x += this.dx;
             this.y += this.dy;
+            log({dx: this.dx, dy: this.dy})
         }
     }
 
     checkCollisions() {
+        let newDirection = components(this.nextDirection.shift());
+        // console.error(newDirection)
+        while (newDirection && newDirection.dx === -this.dx && newDirection.dy === -this.dy) {
+            newDirection = components(this.nextDirection.shift());
+        }
+        if (newDirection) {
+            this.dx = newDirection.dx;
+            this.dy = newDirection.dy;
+        }        
         return [];
     }
 }
