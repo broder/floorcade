@@ -11,6 +11,11 @@ module.exports.render = ({players}, pixels, {width, height}) => {
     }
     players.forEach(player => {
         const colour = player.alive ? colours[player.id] : [128,128,128];
-        renderColoursAtPixel(colour, player.x, player.y);
+        // Make the spaceship a 3x3 blob. So majestic. Wowe.
+        for (let dx = -1; dx <= 1; dx++) {
+            for (let dy = -1; dy <= 1; dy++) {
+                renderColoursAtPixel(colour, player.x + dx, player.y + dy);
+            }   
+        }
     });
 };
