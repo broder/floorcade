@@ -2,7 +2,6 @@ const { components } = require('./directions');
 const log = require ('../../log');
 
 module.exports.init = ({width, height}) => {
-    const offset = Math.round(Math.min(width / 4, height / 4));
     var startingPositions = [{x: 20, y: 20}];
     return startingPositions.map(({x, y}, index) => new Player({
         id: index + 1,

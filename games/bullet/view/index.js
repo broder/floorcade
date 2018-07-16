@@ -4,7 +4,7 @@ module.exports.init = ({width, height}) => {
     const pixels = new Uint8Array(width * height * 3);
 
     const render = state => {
-        round.render(state.round, pixels);
+        round.render(state.round, pixels, {width, height});
         return pixels;
     }
 
